@@ -47,7 +47,7 @@ function MainApp() {
   return (
     <React.Fragment>
       <StatusBar backgroundColor="#3f51b5" barStyle="light-content" />
-      <Text>Farabi blog</Text>
+      <Text>بلاگ فارابی</Text>
     </React.Fragment>
   );
 }

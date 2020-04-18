@@ -1,5 +1,6 @@
 import React from 'react';
 import {Provider} from 'react-redux';
+import {I18nManager} from 'react-native';
 import MainApp from './src/components/MainApp';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import store from './src/store/store';
@@ -27,6 +28,8 @@ const theme = {
     },
   },
 };
+I18nManager.allowRTL(true);
+I18nManager.forceRTL(true);
 function App() {
   return (
     <Provider store={store}>
