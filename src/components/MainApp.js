@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {StatusBar} from 'react-native';
-import {connect} from 'react-redux';
+import {Text} from 'react-native-paper';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   changeAllBlogs,
   changeUserBlogs,
@@ -9,59 +10,46 @@ import {
 } from '../store/actions';
 import {getPosts, getUserPosts} from '../apis';
 
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.User.isLogin,
-    loadAgain: state.Blog.loadAgain,
-  };
-};
-
-const mapDispatchToProps = {
-  changeAllBlogs,
-  changeUserBlogs,
-  changeAllBlogsLoading,
-  changeUserBlogsLoading,
-};
-
-function MainApp(props) {
+function MainApp() {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(state => state.User.isAuthenticated);
+  const loadAgain = useSelector(state => state.Blog.loadAgain);
   useEffect(() => {
-    if (props.isAuthenticated) {
-      props.changeAllBlogsLoading(true);
+    if (isAuthenticated) {
+      dispatch(changeAllBlogsLoading(true));
       getPosts()
         .then(response => {
           if (response.data.success) {
-            props.changeAllBlogs(response.data.message);
+            dispatch(changeAllBlogs(response.data.message));
           }
         })
         .catch(err => {
           console.log(err);
         })
         .finally(() =>
-          setTimeout(() => props.changeAllBlogsLoading(false), 1000),
+          setTimeout(() => dispatch(changeAllBlogsLoading(false)), 1000),
         );
-      props.changeUserBlogsLoading(true);
+      dispatch(changeUserBlogsLoading(true));
       getUserPosts()
         .then(response => {
           if (response.data.success) {
-            props.changeUserBlogs(response.data.message);
+            dispatch(changeUserBlogs(response.data.message));
           }
         })
         .catch(err => {
           console.log(err);
         })
         .finally(() =>
-          setTimeout(() => props.changeUserBlogsLoading(false), 1000),
+          setTimeout(() => dispatch(changeUserBlogsLoading(false)), 1000),
         );
     }
-  }, [props.isAuthenticated, props.loadAgain]);
+  }, [isAuthenticated, loadAgain]);
   return (
     <React.Fragment>
       <StatusBar backgroundColor="#3f51b5" barStyle="light-content" />
+      <Text>Farabi blog</Text>
     </React.Fragment>
   );
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(MainApp);
+export default MainApp;
