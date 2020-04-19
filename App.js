@@ -1,6 +1,8 @@
 import React from 'react';
+import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
-import {I18nManager} from 'react-native';
+import {I18nManager, StatusBar} from 'react-native';
 import MainApp from './src/components/MainApp';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import store from './src/store/store';
@@ -34,7 +36,10 @@ function App() {
   return (
     <Provider store={store}>
       <PaperProvider theme={theme}>
-        <MainApp />
+        <StatusBar backgroundColor="#3f51b5" barStyle="light-content" />
+        <NavigationContainer>
+          <MainApp />
+        </NavigationContainer>
       </PaperProvider>
     </Provider>
   );
