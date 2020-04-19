@@ -7,7 +7,7 @@ import {
   changeUserBlogsLoading,
 } from '../store/actions';
 import {getPosts, getUserPosts} from '../apis';
-import HomeStack from '../stacks/HomeStack';
+import AppStack from '../stacks/AppStack';
 
 function MainApp() {
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ function MainApp() {
         );
     }
   }, [isAuthenticated, loadAgain]);
-  return <HomeStack />;
+  return <AppStack />;
 }
 
 export default MainApp;
