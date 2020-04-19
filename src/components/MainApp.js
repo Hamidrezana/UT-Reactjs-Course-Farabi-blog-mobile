@@ -8,6 +8,7 @@ import {
 } from '../store/actions';
 import {getPosts, getUserPosts} from '../apis';
 import DrawerStack from '../stacks/DrawerStack';
+import AuthStack from '../stacks/AuthStack';
 
 function MainApp() {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ function MainApp() {
         );
     }
   }, [isAuthenticated, loadAgain]);
-  return <DrawerStack />;
+  return isAuthenticated ? <DrawerStack /> : <AuthStack />;
 }
 
 export default MainApp;
