@@ -1,6 +1,4 @@
 import React, {useEffect} from 'react';
-import {Text} from 'react-native-paper';
-import {createStackNavigator} from '@react-navigation/stack';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   changeAllBlogs,
@@ -9,10 +7,7 @@ import {
   changeUserBlogsLoading,
 } from '../store/actions';
 import {getPosts, getUserPosts} from '../apis';
-import HomeScreen from '../screens/Home';
-import BlogScreen from '../screens/Blog';
-
-const Stack = createStackNavigator();
+import HomeStack from '../stacks/HomeStack';
 
 function MainApp() {
   const dispatch = useDispatch();
@@ -48,27 +43,7 @@ function MainApp() {
         );
     }
   }, [isAuthenticated, loadAgain]);
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: '#3f51b5',
-        },
-        headerTitleStyle: {
-          color: '#fff',
-          fontFamily: 'Vazir-FD-WOL',
-          fontSize: 16,
-        },
-        headerTintColor: '#fff',
-      }}>
-      <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{title: 'بلاگ فارابی'}}
-      />
-      <Stack.Screen name="Blog" component={BlogScreen} />
-    </Stack.Navigator>
-  );
+  return <HomeStack />;
 }
 
 export default MainApp;
