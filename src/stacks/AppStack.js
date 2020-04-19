@@ -3,6 +3,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Appbar, IconButton} from 'react-native-paper';
 import HomeStack from './HomeStack';
 import AddBlogScreen from '../screens/AddBlog';
+import AboutScreen from '../screens/About';
+import SettingsScreen from '../screens/Settings';
 
 const Stack = createStackNavigator();
 
@@ -20,7 +22,11 @@ const Header = ({scene, previous, navigation}) => {
       {previous ? (
         <Appbar.BackAction onPress={() => navigation.goBack()} color="#fff" />
       ) : (
-        <IconButton icon="menu" color="#fff" onPress={() => {}} />
+        <IconButton
+          icon="menu"
+          color="#fff"
+          onPress={() => navigation.openDrawer()}
+        />
       )}
       <Appbar.Content title={previous ? '' : title} />
     </Appbar.Header>
@@ -42,6 +48,8 @@ function AppStack() {
         options={{title: 'بلاگ فارابی'}}
       />
       <Stack.Screen name="AddBlog" component={AddBlogScreen} />
+      <Stack.Screen name="About" component={AboutScreen} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
   );
 }

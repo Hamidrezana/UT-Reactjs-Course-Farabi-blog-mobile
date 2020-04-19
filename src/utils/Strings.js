@@ -3,6 +3,8 @@ export default {
     brand: 'بلاگ فارابی',
     homeLink: 'خانه',
     myBlogsLink: 'بلاگ های من',
+    aboutLink: 'درباره ما',
+    settingsLink: 'تنظیمات',
   },
   title: {
     userBlogs: 'بلاگ های شما',

@@ -7,7 +7,7 @@ import {
   changeUserBlogsLoading,
 } from '../store/actions';
 import {getPosts, getUserPosts} from '../apis';
-import AppStack from '../stacks/AppStack';
+import DrawerStack from '../stacks/DrawerStack';
 
 function MainApp() {
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ function MainApp() {
         );
     }
   }, [isAuthenticated, loadAgain]);
-  return <AppStack />;
+  return <DrawerStack />;
 }
 
 export default MainApp;
