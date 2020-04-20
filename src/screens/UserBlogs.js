@@ -1,11 +1,23 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {FAB} from 'react-native-paper';
+import BlogCard from '../components/BlogCard';
+import { useSelector } from 'react-redux';
+import { FlatList } from 'react-native-gesture-handler';
 
 function UserBlogsScreen({navigation}) {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>UserBlogsScreen</Text>
+  const userBlogs = useSelector(state => state.Blog.userBlogs);
+  const loading = useSelector(state => state.Blog.userBlogsLoading);
+
+  return loading ? (
+    <View />
+  ) : (
+    <View style={{flex: 1}}>
+      <FlatList
+        data={userBlogs}
+        renderItem={({item}) => <BlogCard blog={item} />}
+        keyExtractor={blog => blog.id.toString()}
+      />
       <FAB
         style={styles.fab}
         icon="plus"

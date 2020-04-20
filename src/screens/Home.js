@@ -1,11 +1,20 @@
 import React from 'react';
 import {View, Text, Button} from 'react-native';
+import {useSelector} from 'react-redux';
+import {FlatList} from 'react-native-gesture-handler';
+import BlogCard from '../components/BlogCard';
 
 function HomeScreen({navigation}) {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>HomeScreen</Text>
-    </View>
+  const allBlogs = useSelector(state => state.Blog.allBlogs);
+  const loading = useSelector(state => state.Blog.allBlogsLoading);
+  return loading ? (
+    <View />
+  ) : (
+    <FlatList
+      data={allBlogs}
+      renderItem={({item}) => <BlogCard blog={item} fromHome />}
+      keyExtractor={blog => blog.id.toString()}
+    />
   );
 }
 
