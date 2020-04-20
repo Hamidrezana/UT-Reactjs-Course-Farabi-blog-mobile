@@ -7,7 +7,7 @@ import {
   changeUserBlogsLoading,
 } from '../store/actions';
 import {getPosts, getUserPosts} from '../apis';
-import DrawerStack from '../stacks/DrawerStack';
+import MainStack from '../stacks/MainStack';
 import AuthStack from '../stacks/AuthStack';
 
 function MainApp() {
@@ -44,7 +44,7 @@ function MainApp() {
         );
     }
   }, [isAuthenticated, loadAgain]);
-  return isAuthenticated ? <DrawerStack /> : <AuthStack />;
+  return isAuthenticated ? <MainStack /> : <AuthStack />;
 }
 
 export default MainApp;
