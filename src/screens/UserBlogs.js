@@ -4,13 +4,14 @@ import {FAB} from 'react-native-paper';
 import BlogCard from '../components/BlogCard';
 import { useSelector } from 'react-redux';
 import { FlatList } from 'react-native-gesture-handler';
+import Loading from '../components/Loading';
 
 function UserBlogsScreen({navigation}) {
   const userBlogs = useSelector(state => state.Blog.userBlogs);
   const loading = useSelector(state => state.Blog.userBlogsLoading);
 
   return loading ? (
-    <View />
+    <Loading />
   ) : (
     <View style={{flex: 1}}>
       <FlatList
