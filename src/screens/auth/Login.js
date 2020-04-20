@@ -22,8 +22,8 @@ function LoginScreen(props) {
     },
   ];
   const [values, setValues] = useState({
-    email: 'hamidreza@email.com',
-    password: '1234',
+    email: '',
+    password: '',
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
