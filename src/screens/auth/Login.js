@@ -3,7 +3,7 @@ import Input from '../../components/Input';
 import Container from '../../components/Container';
 import Button from '../../components/Button';
 import {mustFilled, email} from '../../utils/Validations';
-import {login, setToken} from '../../apis';
+import {login, setAuthToken} from '../../apis';
 import Strings from '../../utils/Strings';
 import {changeLoginStatus, changeUserInfo} from '../../store/actions';
 import {useDispatch} from 'react-redux';
@@ -22,8 +22,8 @@ function LoginScreen(props) {
     },
   ];
   const [values, setValues] = useState({
-    email: '',
-    password: '',
+    email: 'hamidreza@email.com',
+    password: '1234',
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -55,10 +55,10 @@ function LoginScreen(props) {
           if (response.data.success) {
             setTimeout(() => {
               setLoading(false);
-              setToken(response.data.token);
-              dispatch(changeLoginStatus(true));
+              setAuthToken(response.data.token);
               dispatch(changeUserInfo(response.data.message));
-              props.navigation.navigate('Home');
+              dispatch(changeLoginStatus(true));
+              // props.navigation.navigate('Home');
             }, 300);
           } else {
             setLoading(false);

@@ -12,7 +12,7 @@ import AuthStack from '../stacks/AuthStack';
 
 function MainApp() {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector(state => state.User.isAuthenticated);
+  const isAuthenticated = useSelector(state => state.User.isLogin);
   const loadAgain = useSelector(state => state.Blog.loadAgain);
   useEffect(() => {
     if (isAuthenticated) {
